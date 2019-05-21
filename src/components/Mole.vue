@@ -1,6 +1,6 @@
 <template>
-  <div class="mole-container inactive">
-    <div v-bind:class="classNames">
+  <div v-bind:class="classNames" v-on:click="handleContainerClick">
+    <div class="mole-image-container">
       <img
         class="mole"
         src="../assets/mole.png"
@@ -19,6 +19,12 @@ export default {
   methods: {
     handleClick: function() {
       this.$emit('whack', this.moleId);
+    },
+    handleContainerClick: function(evt) {
+      if (evt.target.className === 'mole') {
+        return;
+      }
+      this.$emit('miss');
     },
   },
   computed: {
@@ -41,27 +47,33 @@ export default {
   margin: 10px;
   position: relative;
 }
+
 .mole-image-container {
   overflow: hidden;
   width: 160px;
   height: 140px;
 }
+
 .mole-container img {
   display: block;
   transition: all 0.3s ease;
 }
+
 .mole {
   position: relative;
   width: 60%;
   margin: auto;
   cursor: pointer;
 }
+
 .mole-container.active .mole {
   top: 0px;
 }
+
 .mole-container.inactive .mole {
   top: 200px;
 }
+
 .dirt {
   width: 100%;
   margin: auto;

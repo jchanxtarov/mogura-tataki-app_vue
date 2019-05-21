@@ -18,6 +18,7 @@
       v-bind:moleData="moles"
       v-bind:gameActive="gameActive"
       v-on:whack="handleMoleWhack"
+      v-on:miss="handleMoleMiss"
     />
   </div>
 </template>

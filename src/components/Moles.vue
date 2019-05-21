@@ -6,6 +6,7 @@
       v-bind:active="moleState"
       v-bind:moleId="idx"
       v-on:whack="handleWhack"
+      v-on:miss="handleMiss"
     >
     </Mole>
   </div>
@@ -13,6 +14,7 @@
 
 <script>
 import Mole from './Mole';
+
 export default {
   name: 'Moles',
   components: {
@@ -22,6 +24,9 @@ export default {
   methods: {
     handleWhack: function(moleId) {
       this.$emit('whack', moleId);
+    },
+    handleMiss: function() {
+      this.$emit('miss');
     },
   },
   computed: {
@@ -43,6 +48,7 @@ export default {
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
+
 .moles-container.game-active {
   opacity: 1;
 }
